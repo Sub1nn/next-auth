@@ -1,5 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 export const NEXT_AUTH_CONFIG = {
   providers: [
     CredentialsProvider({
@@ -21,6 +22,10 @@ export const NEXT_AUTH_CONFIG = {
       clientId: process.env.GOOGLE_ID || "",
       clientSecret: process.env.GOOGLE_SECRET || "",
     }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+    }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -40,5 +45,8 @@ export const NEXT_AUTH_CONFIG = {
       }
       return session;
     },
+  },
+  Pages: {
+    signIn: "/signin",
   },
 };
